@@ -1,0 +1,9 @@
+<div class="overlay" *ngIf="(loading$ | async)">
+  <div class="panel">
+    <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+    <div class="text">
+      <div class="title">Buscando accidentes 2025…</div>
+      <div class="subtitle">Consultando base de datos</div>
+    </div>
+  </div>
+</div>

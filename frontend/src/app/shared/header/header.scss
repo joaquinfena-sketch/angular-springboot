@@ -1,0 +1,31 @@
+.header {
+  background: #0a2f6b;
+  color: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  margin: 20px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.buttons {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.province-btn.selected {
+  background-color: #ffd54f !important;  /* amarillo fuerte */
+  color: #0a2f6b !important;             /* texto azul oscuro */
+  box-shadow: 0 0 0 3px white;
+  transform: scale(1.05);
+}
+

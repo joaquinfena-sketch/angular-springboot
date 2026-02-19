@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="title">Accidentes Mortales Andalucía</div>
+
+  <div class="buttons">
+    <!-- Botón maestro -->
+    <button
+      mat-raised-button
+      color="primary"
+      class="province-btn"
+      [class.selected]="isAndaluciaSelected()"
+      (click)="toggleAndalucia()"
+    >
+      Andalucía
+    </button>
+
+    <!-- Provincias -->
+    <button
+      *ngFor="let p of provinces"
+      mat-raised-button
+      color="primary"
+      class="province-btn"
+      [class.selected]="selection.isSelected(p)"
+      (click)="selection.toggle(p)"
+    >
+      {{ p }}
+    </button>
+  </div>
+</header>
