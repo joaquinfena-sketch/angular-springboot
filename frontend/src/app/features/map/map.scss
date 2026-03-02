@@ -1,6 +1,40 @@
+.map-wrapper {
+  margin: 0 20px 20px;
+}
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 8px 0 10px;
+  flex-wrap: wrap;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .heat-toggle input {
+    cursor: pointer;
+  }
+
+  .density-slider {
+    input[type='range'] {
+      width: 80px;
+      cursor: pointer;
+    }
+    span {
+      min-width: 1.2rem;
+      font-weight: 600;
+    }
+  }
+}
+
 .map {
   height: calc(100vh - 260px); /* ajusta a tu header alto */
-  margin: 0 20px 20px;
   border-radius: 12px;
   overflow: hidden;
 }

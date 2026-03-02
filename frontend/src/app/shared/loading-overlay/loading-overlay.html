@@ -1,9 +1,22 @@
-<div class="overlay" *ngIf="(loading$ | async)">
-  <div class="panel">
-    <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
-    <div class="text">
-      <div class="title">Buscando accidentes 2025…</div>
-      <div class="subtitle">Consultando base de datos</div>
-    </div>
+<div class="overlay" *ngIf="(vm$ | async) as vm" [class.hidden]="!vm.loading && !vm.message">
+  <div
+    class="panel"
+    [class.pink]="vm.message?.tone === 'pink'"
+    [class.error]="vm.message?.variant === 'error'"
+  >
+    <ng-container *ngIf="vm.loading; else messagePanel">
+      <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+      <div class="text">
+        <div class="title">{{ vm.loadingMessage?.title ?? 'Cargando…' }}</div>
+        <div class="subtitle" *ngIf="vm.loadingMessage?.subtitle || !vm.loadingMessage">{{ vm.loadingMessage?.subtitle ?? 'Espera un momento' }}</div>
+      </div>
+    </ng-container>
+
+    <ng-template #messagePanel>
+      <div class="text only">
+        <div class="title">{{ vm.message?.title }}</div>
+        <div class="subtitle" *ngIf="vm.message?.subtitle">{{ vm.message?.subtitle }}</div>
+      </div>
+    </ng-template>
   </div>
 </div>

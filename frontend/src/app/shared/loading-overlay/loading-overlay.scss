@@ -8,6 +8,10 @@
   z-index: 9999;
 }
 
+.overlay.hidden {
+  display: none;
+}
+
 .panel {
   background: white;
   border-radius: 14px;
@@ -17,6 +21,18 @@
   align-items: center;
   gap: 15px;
   min-width: 280px;
+}
+
+.panel.pink {
+  border: 2px solid rgba(138, 20, 79, 0.25);
+}
+
+.panel.error .title {
+  color: #8a144f;
+}
+
+.text.only {
+  padding: 6px 2px;
 }
 
 .title {

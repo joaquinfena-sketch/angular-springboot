@@ -1,1 +1,16 @@
-<div id="map" class="map"></div>
+<div class="map-wrapper">
+  <div class="map-controls">
+    <label class="heat-toggle">
+      <input type="checkbox" [checked]="showHeatmap()" (change)="toggleHeatmap($event)" />
+      Vista calor (heatmap)
+    </label>
+    @if (showHeatmap()) {
+      <label class="density-slider">
+        Densidad
+        <input type="range" min="1" max="5" [value]="density()" (input)="onDensityChange($event)" />
+        <span>{{ density() }}</span>
+      </label>
+    }
+  </div>
+  <div id="map" class="map"></div>
+</div>

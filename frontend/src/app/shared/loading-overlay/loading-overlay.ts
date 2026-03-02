@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LoadingService } from '../../core/loading.service';
+import { LoadingService, OverlayMessage, LoadingMessage } from '../../core/loading.service';
+import { combineLatest, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-loading-overlay',
@@ -12,9 +13,19 @@ import { LoadingService } from '../../core/loading.service';
 })
 export class LoadingOverlayComponent {
 
-  loading$;
+  vm$: Observable<{
+    loading: boolean;
+    loadingMessage: LoadingMessage | null;
+    message: OverlayMessage | null;
+  }>;
 
   constructor(private loading: LoadingService) {
-    this.loading$ = this.loading.loading$;
+    this.vm$ = combineLatest([
+      this.loading.loading$,
+      this.loading.loadingMessage$,
+      this.loading.message$,
+    ]).pipe(
+      map(([loading, loadingMessage, message]) => ({ loading, loadingMessage, message }))
+    );
   }
 }

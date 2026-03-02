@@ -1,0 +1,30 @@
+<app-header title="Acceso" [showProvinceButtons]="false"></app-header>
+
+<section class="login-shell">
+  <div class="login-title">Iniciar sesión</div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="login-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input matInput formControlName="username" autocomplete="username" />
+      <mat-error *ngIf="form.get('username')?.touched && form.get('username')?.hasError('required')">
+        Campo obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" autocomplete="current-password" />
+      <mat-error *ngIf="form.get('password')?.touched && form.get('password')?.hasError('required')">
+        Campo obligatorio
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" class="login-btn" type="submit" [disabled]="submitting()">
+        Entrar
+      </button>
+    </div>
+  </form>
+</section>
+

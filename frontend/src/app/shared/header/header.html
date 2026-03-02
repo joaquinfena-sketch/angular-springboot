@@ -1,7 +1,18 @@
-<header class="header">
-  <div class="title">Accidentes Mortales Andalucía</div>
+<header class="header" [ngClass]="{ pink: tone === 'pink' }">
+  <a
+    *ngIf="auth.loggedIn()"
+    class="home-link"
+    mat-icon-button
+    routerLink="/home"
+    aria-label="Ir a inicio"
+    title="Inicio"
+  >
+    <mat-icon>home</mat-icon>
+  </a>
 
-  <div class="buttons">
+  <div class="title">{{ title }}</div>
+
+  <div class="buttons" *ngIf="showProvinceButtons">
     <!-- Botón maestro -->
     <button
       mat-raised-button

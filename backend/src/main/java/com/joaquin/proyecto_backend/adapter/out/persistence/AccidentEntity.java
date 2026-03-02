@@ -1,11 +1,15 @@
-package com.joaquin.proyecto_backend.domain;
+package com.joaquin.proyecto_backend.adapter.out.persistence;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * Entidad JPA para persistencia (adaptador de salida).
+ * El dominio usa AccidentPoint / AccidentReport; esta clase es detalle de infraestructura.
+ */
 @Entity
 @Table(name = "accident")
-public class Accident {
+public class AccidentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +26,9 @@ public class Accident {
 
     private LocalDate date;
 
-    public Accident() {}
+    public AccidentEntity() {}
 
-    public Accident(String province, Double lat, Double lng, LocalDate date) {
+    public AccidentEntity(String province, Double lat, Double lng, LocalDate date) {
         this.province = province;
         this.lat = lat;
         this.lng = lng;

@@ -1,0 +1,38 @@
+<section class="form-shell">
+  <div class="form-title">Elegir punto</div>
+
+  <form [formGroup]="form" class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Provincia</mat-label>
+      <mat-select formControlName="province" (selectionChange)="onProvinceChange()">
+        <mat-option *ngFor="let p of provinces" [value]="p">{{ p }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('province')">{{ errorText('province') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" *ngIf="locationPoints().length > 0">
+      <mat-label>Localidad / Punto</mat-label>
+      <mat-select formControlName="locationId" (selectionChange)="onLocationSelect($event.value)">
+        <mat-option *ngFor="let point of locationPoints()" [value]="point.id">
+          {{ point.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="hasError('locationId')">{{ errorText('locationId') }}</mat-error>
+    </mat-form-field>
+
+    <div class="hint" *ngIf="form.get('province')?.value && loadingLocations()">
+      Cargando puntos…
+    </div>
+    <div class="hint" *ngIf="form.get('province')?.value && !loadingLocations() && locationPoints().length === 0">
+      No hay puntos para esta provincia.
+    </div>
+    <div class="selected-summary-row" *ngIf="selectedPoint() as p">
+      <span class="selected-summary">
+        <strong>{{ p.name }}</strong> ({{ p.province }}) — {{ p.lat | number:'1.4-4' }}, {{ p.lng | number:'1.4-4' }}
+      </span>
+      <button mat-stroked-button color="primary" type="button" (click)="downloadPdf()">
+        Descargar PDF
+      </button>
+    </div>
+  </form>
+</section>
