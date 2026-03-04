@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, map, catchError, of } from 'rxjs';
 
 const TOKEN_KEY = 'auth.token';
-const API_AUTH = 'http://localhost:8080/api/auth';
+const API_AUTH = 'https://angular-springboot-8fm6.onrender.com/api/auth';
+//const API_AUTH = 'http://localhost:8080/api/auth';
 
 export interface LoginResponse {
   token: string;

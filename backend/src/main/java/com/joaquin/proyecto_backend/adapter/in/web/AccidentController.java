@@ -26,7 +26,7 @@ import com.joaquin.proyecto_backend.domain.AccidentReport;
  */
 @RestController
 @RequestMapping("/api/accidents")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://joaquinfena-sketch.github.io"})
 public class AccidentController {
 
     private static final Logger log = LoggerFactory.getLogger(AccidentController.class);

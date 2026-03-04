@@ -12,6 +12,6 @@ public class InMemoryCredentialsAdapter implements ValidateCredentialsPort {
 
     @Override
     public boolean validate(String username, String password) {
-        return "j.fernandez".equals(username) && "1234".equals(password);
+        return "admin".equals(username) && "1234".equals(password);
     }
 }

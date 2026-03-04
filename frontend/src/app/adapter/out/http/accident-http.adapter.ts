@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import type { AccidentPoint, AccidentReport, AccidentReportSearch } from '../../../core/domain/accident.model';
 import { GetAccidentPointsPort, GetAccidentReportsPort } from '../../../core/port/out/accident.port';
 
-const BASE_URL = 'http://localhost:8080/api/accidents';
+const BASE_URL = 'https://angular-springboot-8fm6.onrender.com/api/accidents';
+//const BASE_URL = 'http://localhost:8080/api/accidents';
 
 /**
  * Adaptador de salida: HTTP (backend REST).

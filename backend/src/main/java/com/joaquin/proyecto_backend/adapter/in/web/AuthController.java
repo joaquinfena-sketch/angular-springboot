@@ -16,7 +16,7 @@ import com.joaquin.proyecto_backend.application.port.in.LoginUseCase;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://joaquinfena-sketch.github.io"})
 public class AuthController {
 
     private static final Logger log = LoggerFactory.getLogger(AuthController.class);
