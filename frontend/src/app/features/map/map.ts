@@ -71,7 +71,7 @@ export class MapComponent implements AfterViewInit {
 
 
     // 2) Cargar provincias (GeoJSON)
-    const res = await fetch('/geo/provincias_spain.geojson');
+    const res = await fetch('assets/geo/provincias_spain.geojson');
     const geojson = await res.json();
 
     const andalucia = new Set([
@@ -196,10 +196,27 @@ export class MapComponent implements AfterViewInit {
       return;
     }
 
-    // Aceptar lng tanto en minúscula como del API (p. ej. Lng)
+    const toNumber = (value: unknown): number | null => {
+      if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+      if (typeof value === 'string') {
+        const n = Number(value);
+        return Number.isFinite(n) ? n : null;
+      }
+      return null;
+    };
+
+    // Aceptar lat/lng como número o string y Lng en mayúscula
     const latlngs: [number, number, number][] = this.lastAccidents
-      .filter((a) => typeof (a as any).lat === 'number' && (typeof (a as any).lng === 'number' || typeof (a as any).Lng === 'number'))
-      .map((a) => [(a as any).lat, (a as any).lng ?? (a as any).Lng, 0.7] as [number, number, number]);
+      .map((a) => {
+        const rawLat = (a as any).lat;
+        const rawLng = (a as any).lng ?? (a as any).Lng;
+        const lat = toNumber(rawLat);
+        const lng = toNumber(rawLng);
+
+        if (lat == null || lng == null) return null;
+        return [lat, lng, 0.7] as [number, number, number];
+      })
+      .filter((v): v is [number, number, number] => v !== null);
 
     const d = this.density();
     const radius = 20 + (d - 1) * 12;
